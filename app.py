@@ -85,6 +85,40 @@ class MyInteractive (cmd.Cmd):
         name = arg['<table_name>']
         events.view(name)
 
+    @docopt_cmd
+    def do_delete_event(self, arg):
+        """Usage: delete_event <eventid> """
+        eventid = arg['<eventid>']
+        events.delete_event(eventid)
+
+    @docopt_cmd
+    def do_edit_event(self, arg):
+        """Usage: edit_event <event_id> """
+
+        event_id = arg['<event_id>']
+        events.edit_events(event_id)
+
+    @docopt_cmd
+    def do_generate_ticket(self, arg):
+        """Usage: generate_ticket <event_id> """
+
+        event_id = arg['<event_id>']
+        events.generate_ticket(event_id)
+
+    @docopt_cmd
+    def do_ticket_validation(self, arg):
+        """Usage: ticket_validation <ticket_id> """
+
+        ticket_id = arg['<ticket_id>']
+        events.ticket_validation(ticket_id)
+
+    @docopt_cmd
+    def do_ticket_invalidation(self, arg):
+        """Usage: ticket_invalidation <ticket_id> """
+
+        ticket_id = arg['<ticket_id>']
+        events.ticket_invalidation(ticket_id)
+
     def do_quit(self, arg):
         """Quits out of Interactive Mode."""
 
