@@ -79,6 +79,12 @@ class MyInteractive (cmd.Cmd):
         event_name = arg['<event_name>']
         events.add_event(event_name)
 
+    @docopt_cmd
+    def do_view(self, arg):
+        """Usage: view <table_name> """
+        name = arg['<table_name>']
+        events.view(name)
+
     def do_quit(self, arg):
         """Quits out of Interactive Mode."""
 

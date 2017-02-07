@@ -36,7 +36,7 @@ def add_event(event_name):
                     conn.execute("INSERT INTO event VALUES (null,?,?,?,?);",
                                  (event_name, start, end, venue))
                     db_con.commit()
-                    cprint("***.........Data saved data...........***",'green')
+                    cprint("***.........Event Created Successfully...........***",'green')
                 else:
                     print("Invalid Input.Venue Can not be a number")
             else:
@@ -47,5 +47,41 @@ def add_event(event_name):
             return add_event(event_name)
 
     except ValueError:
-        print("***......Error in saving data. Invalid Inputs. Note: Start date and End date should be greater than today...........***",'red')
+        print("***......Error in Creating event. Invalid Inputs. Note: Start date and End date should be greater than today...........***",'red')
         return add_event(event_name)
+
+def view(name):
+    """View all events or all tickets"""
+
+    error = colored("\tInvalid Input. Tables to be modified are: Events, Tickets, Invalid_Tickets", 'red').center(80)
+    if name == 'tickets' or name == 'Tickets' or name == 'TICKETS':
+
+        try:
+            conn.execute("SELECT * FROM tickets")
+            items = conn.fetchall()
+
+            cprint (tabulate(items, headers=['Ticket ID', 'Event ID','First Name','Last Name','Email', 'Event Name', 'Start Date', 'End Date', 'Venue'], tablefmt='fancy_grid'), 'cyan')
+        except Exception as e:
+            print(e)
+            print("Error occurred")
+    elif name == 'events' or name == 'EVENTS' or name == 'Events':
+        try:
+            conn.execute("SELECT * FROM event")
+            items = conn.fetchall()
+
+            cprint (tabulate(items, headers=['Event ID', 'Event Name', 'Start Date', 'End Date', 'Venue'], tablefmt='fancy_grid'), 'cyan')
+            
+        except:
+            print ("Error in printing")
+    elif name == 'invalid_tickets' or name == 'INVALID_TICKETS' or name == 'Invalid_Tickets' or name == 'Inavalid_tickets':
+        try:
+            conn.execute("SELECT * FROM invalidtickets")
+            items = conn.fetchall()
+
+            cprint (tabulate(items, headers=['Ticket Number', 'Ticket ID', 'Event ID','First Name','Last Name','Email', 'Event Name', 'Start Date', 'End Date', 'Venue'], tablefmt='fancy_grid'), 'red')
+            print ("***____________All Events Displayed Above___________***")
+        except:
+            print ("Error in printing")
+    else:
+
+        print(error)
