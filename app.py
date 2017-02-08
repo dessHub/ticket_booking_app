@@ -4,9 +4,9 @@ This app uses docopt with the built in cmd module to demonstrate an interactive 
 
                     Usage:
                         app add_event <event_name>
+                        app edit_event <event_id>
                         app view <table_name>
                         app delete_event <eventid>
-                        app edit_event <event_id>
                         app generate_ticket <event_id>
                         app ticket_invalidation <ticket_id>
 
