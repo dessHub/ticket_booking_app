@@ -38,13 +38,14 @@
   6. Set your email Address and password at events.js file
 
       '''
-      def generate_ticket(eventid):
-          -----
-          senders = "youremailaccount"      #Senders Email Address
-          msg = MIMEMultipart()
-          msg['From'] = senders
-          msg['To'] = receivers
-          msg['Subject'] = "Ticket Booking"
+      
+        def generate_ticket(eventid):
+            -----
+            senders = "youremailaccount"      #Senders Email Address
+            msg = MIMEMultipart()
+            msg['From'] = senders
+            msg['To'] = receivers
+            msg['Subject'] = "Ticket Booking"
 
           ------
              try:
